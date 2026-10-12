@@ -9,6 +9,7 @@ async function bootstrap() {
   });
 
   app.setGlobalPrefix('api');
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -22,7 +23,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, documentFactory)
+  SwaggerModule.setup('api/docs', app, documentFactory)
 
   await app.listen(process.env.PORT ?? 3000);
 }
