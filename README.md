@@ -65,6 +65,9 @@ pnpm run build
 pnpm run start:prod
 ```
 
+
+**Execute '/seed' endpoint**
+
 ## API Documentation
 
 Interactive API documentation is available through Swagger UI.
@@ -86,6 +89,7 @@ Base URL: `http://localhost:3000/api`
 | `GET`    | `/products/:id` | Retrieve a product by ID |
 | `PATCH`  | `/products/:id` | Update a product         |
 | `DELETE` | `/products/:id` | Delete a product         |
+| `GET`    | `/seed`         | Insert new data          |
 
 For request parameters, payload schemas, and response details, refer to the Swagger documentation.
 

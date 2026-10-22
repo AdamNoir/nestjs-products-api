@@ -1,7 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ProductImage } from "./product-image.entity.js";
+import type { Relation } from 'typeorm';
 
-@Entity()
+@Entity({name: 'products'})
 export class Product {
 
     @ApiProperty({
@@ -51,6 +53,13 @@ export class Product {
         default: [],
     })
     tags: string[];
+
+    @OneToMany(
+        () => ProductImage,
+        (productImage) => productImage.product,
+        { cascade: true, eager: true }
+    )
+    images: Relation<ProductImage[]>;
 
 
     @BeforeInsert()
