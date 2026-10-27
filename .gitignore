@@ -20,6 +20,9 @@ lerna-debug.log*
 # OS
 .DS_Store
 
+/static/uploads/*
+!/static/uploads/.gitkeep
+
 # Tests
 /coverage
 /.nyc_output
