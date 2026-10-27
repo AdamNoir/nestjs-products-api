@@ -6,6 +6,7 @@ import { ProductsModule } from './products/products.module.js';
 import { CommonModule } from './common/common.module.js';
 import { SeedModule } from './seed/seed.module.js';
 import { FilesModule } from './files/files.module.js';
+import { AuthModule } from './auth/auth.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -22,7 +23,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       database: process.env.DB_NAME,
       autoLoadEntities: true, // carga las entidades que vamos creando
       synchronize: true // no se usa en produccion. Mejor usar migracion.
-    }), ProductsModule, CommonModule, SeedModule, FilesModule
+    }), ProductsModule, CommonModule, SeedModule, FilesModule, AuthModule
   ],
   controllers: [],
   providers: [],
