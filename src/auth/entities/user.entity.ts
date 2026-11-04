@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 
 @Entity('users')
@@ -30,5 +30,17 @@ export class User {
         array: true,
         default: ['user']
     })
-    roles: string[]
+    roles: string[];
+
+
+
+    @BeforeInsert()
+    checkUserEmailCase(){
+        this.email = this.email.toLowerCase().trim();
+    }
+
+    @BeforeUpdate()
+    checkUserEmailCaseUpdate(){
+        this.checkUserEmailCase();
+    }
 }

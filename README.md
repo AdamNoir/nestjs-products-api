@@ -90,6 +90,8 @@ Base URL: `http://localhost:3000/api`
 | `PATCH`  | `/products/:id` | Update a product         |
 | `DELETE` | `/products/:id` | Delete a product         |
 | `GET`    | `/seed`         | Insert new data          |
+| `POST`   | `/auth/register`| Create a User            |
+| `POST`   | `/auth/login`   | Login a user             |
 
 For request parameters, payload schemas, and response details, refer to the Swagger documentation.
 
