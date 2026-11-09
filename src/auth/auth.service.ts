@@ -4,7 +4,7 @@ import { UpdateAuthDto } from './dto/update-user.dto.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { User } from './entities/user.entity.js';
 import { Repository } from 'typeorm';
-import { handleRetry, InjectRepository } from '@nestjs/typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 import * as bcrypt from 'bcrypt';
 import { LoginUserDto } from './dto/login-user.dto.js';
@@ -67,6 +67,14 @@ export class AuthService {
       ...user,
       token: this.getJwToken({id: user.id})
     };
+  }
+
+
+  async checkAuthStatus(user: User){
+    return {
+      ...user,
+      token: this.getJwToken({id: user.id})
+    }
   }
 
 

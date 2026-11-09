@@ -1,4 +1,6 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Product } from '../../products/entities/product.entity.js';
+import type { Relation } from 'typeorm';
 
 
 @Entity('users')
@@ -32,6 +34,12 @@ export class User {
     })
     roles: string[];
 
+
+    @OneToMany(
+        () => Product,
+        (product) => product.user
+    )
+    products: Relation<Product[]>;
 
 
     @BeforeInsert()

@@ -1,7 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ProductImage } from "./product-image.entity.js";
 import type { Relation } from 'typeorm';
+import { User } from "../../auth/entities/user.entity.js";
 
 @Entity({name: 'products'})
 export class Product {
@@ -61,6 +62,13 @@ export class Product {
     )
     images: Relation<ProductImage[]>;
 
+
+    @ManyToOne(
+        () => User,
+        (user) => user.products,
+        {eager: true}
+    )
+    user: Relation<User>
 
     @BeforeInsert()
     checkSlugInsert() {
