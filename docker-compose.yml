@@ -12,3 +12,31 @@ services:
     container_name: products-db
     volumes:
       - ./postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+
+  api:
+    build:
+      context: .
+      target: production
+    container_name: products-api
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      DB_HOST: db     
+      DB_PORT: 5432
+    volumes:
+      - uploads:/app/static/uploads
+
+volumes:
+  uploads:

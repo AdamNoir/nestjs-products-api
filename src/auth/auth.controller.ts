@@ -1,13 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, SetMetadata } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { LoginUserDto } from './dto/login-user.dto.js';
-import { AuthGuard } from '@nestjs/passport';
-import { GetUser } from './decorators/get-user.decorator.js';
-import { User } from './entities/user.entity.js';
-import { RawHeaders } from './decorators/get-raw-headers.decorator.js';
-import { ValidRoles } from './interfaces/valid-roles.js';
-import { Auth } from './decorators/auth.decorator.js';
+
 
 @Controller('auth')
 export class AuthController {
