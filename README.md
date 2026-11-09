@@ -42,9 +42,38 @@ Configure the required environment variables in .env. Refer to .env.template for
 
 **Never commit real credentials or secrets.**
 
-### Start the Database
+### Run the Application - Docker
 
-Start the PostgreSQL database using Docker Compose:
+Build a restapi image and start a database
+
+```bash
+docker compose up --build -d
+```
+
+
+### Run the Application - Local
+
+Start the PostgreSQL database using Docker Compose.
+
+Create (or replace) a docker-compose.yml file and pase this code.
+```yaml
+version: '3'
+
+services:
+  db:
+    image: postgres:14.3
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    container_name: products-db
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+```
+
+Execute
 
 ```bash
 docker compose up -d
@@ -52,7 +81,8 @@ docker compose up -d
 
 Make sure the database is ready and the connection settings in .env match your Docker configuration.
 
-### Run the Application
+
+Run the API
 
 ```bash
 # Development
@@ -64,7 +94,6 @@ pnpm run build
 # Production
 pnpm run start:prod
 ```
-
 
 **Execute '/seed' endpoint**
 
